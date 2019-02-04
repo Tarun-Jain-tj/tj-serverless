@@ -6,6 +6,9 @@ Parameters:
     OriginUrl:
         Description: "The origin url to allow CORS requests from. This will be the base URL of your static SAM website."
         Type: "String"
+    Environment: 
+        Type: String  
+        Description: Name of the environment for which the resources are getting created
 Resources:
     GetSAMPartyCount:
         Type: AWS::Serverless::Function
