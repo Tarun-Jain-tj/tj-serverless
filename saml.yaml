@@ -17,7 +17,7 @@ Resources:
             Runtime: nodejs6.10
             Role:
               Fn::ImportValue:
-                !Join ['-', [!Ref 'Environment', 'cicd-app-LambdaTrustRole']] 
+                !Join ['-', [!Ref 'Environment', 'LambdaTrustRole']] 
             CodeUri: ./
             Environment:
                 Variables:
