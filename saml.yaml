@@ -14,17 +14,12 @@ Resources:
         Type: AWS::Serverless::Function
         Properties:
             Handler: index.handler
-            Runtime: nodejs6.10
+            Runtime: nodejs8.10
             Role:
               Fn::ImportValue:
                 !Join ['-', [!Ref 'Environment', 'LambdaTrustRole']] 
-            CodeUri: ./
-            Environment:
-                Variables:
-                    SAM_MULTIPLIER: !Ref SamMultipler
-                    ORIGIN_URL: !Ref OriginUrl
             Events:
-              GetResource:
+              GetEvent:
                 Type: Api
                 Properties:
                   Path: /sam
