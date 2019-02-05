@@ -13,7 +13,7 @@ Resources:
     GetSAMPartyCount:
         Type: AWS::Serverless::Function
         Properties:
-            Handler: index.handler
+            Handler: index.test1
             Runtime: nodejs8.10
             Role:
               Fn::ImportValue:
