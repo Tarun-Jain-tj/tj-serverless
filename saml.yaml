@@ -1,21 +1,28 @@
 Transform: 'AWS::Serverless-2016-10-31'
 Parameters:
-    Environment: 
-        Type: String  
-        Description: Name of the environment for which the resources are getting created
+  Environment:
+    Type: String
+    Description: Name of the environment for which the resources are getting created
 Resources:
+  MyApi:
+    Type: 'AWS::Serverless::Api'
+    Properties:
+      StageName: mine
+      
     GetSAMPartyCount:
-        Type: AWS::Serverless::Function
-        Properties:
-            Handler: index.test1
-            Runtime: nodejs8.10
-            Role:
-              Fn::ImportValue:
-                !Join ['-', [!Ref 'Environment', 'LambdaTrustRole']] 
-            Events:
-              GetEvent:
-                Type: Api
-                Properties:
-                  Path: /sam
-                  Method: get
-                  StageName: mine
+      Type: 'AWS::Serverless::Function'
+      Properties:
+        Handler: index.test1
+        Runtime: nodejs8.10
+        Role: !ImportValue 
+          'Fn::Join':
+            - '-'
+            - - !Ref Environment
+              - LambdaTrustRole
+        Events:
+          GetEvent:
+            Type: Api
+            Properties:
+              Path: /sam
+              Method: get
+              RestApiId: !Ref MyApi
